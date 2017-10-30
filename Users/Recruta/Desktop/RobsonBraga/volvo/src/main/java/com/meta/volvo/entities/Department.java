@@ -1,15 +1,12 @@
 package com.meta.volvo.entities;
 
 import java.io.Serializable;
-import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 
 @Entity(name = "DEPARTMENTS")
 public class Department implements Serializable {
@@ -29,9 +26,6 @@ public class Department implements Serializable {
 
 	@Column(length = 50, nullable = false, name = "DESCRIPTION")
 	private String description;
-
-	@OneToMany(mappedBy = "department", cascade = CascadeType.ALL)
-	private Set<User> user;
 
 	public Department() {
 	}
@@ -63,14 +57,6 @@ public class Department implements Serializable {
 
 	public void setDescription(String description) {
 		this.description = description;
-	}
-
-	public Set<User> getUser() {
-		return user;
-	}
-
-	public void setUser(Set<User> user) {
-		this.user = user;
 	}
 
 }

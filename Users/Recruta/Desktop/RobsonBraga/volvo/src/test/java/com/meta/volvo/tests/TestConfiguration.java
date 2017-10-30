@@ -1,5 +1,7 @@
 package com.meta.volvo.tests;
 
+import java.util.Properties;
+
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -32,11 +34,15 @@ public class TestConfiguration {
 
 	@Bean
 	public DataSource dataSource() {
+		Properties properties = new Properties();
+		properties.setProperty("useSSL", "false");
+
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		dataSource.setDriverClassName(driverClassName);
 		dataSource.setUrl(url);
 		dataSource.setUsername(username);
 		dataSource.setPassword(password);
+		dataSource.setConnectionProperties(properties);
 		return dataSource;
 	}
 

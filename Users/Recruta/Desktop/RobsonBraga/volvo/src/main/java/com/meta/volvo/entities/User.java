@@ -3,7 +3,6 @@ package com.meta.volvo.entities;
 import java.io.Serializable;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -37,7 +36,7 @@ public class User implements Serializable {
 	@JoinColumn(name = "DEPARTMENT_ID")
 	private Department department;
 
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany
 	@JoinTable(name = "USER_PERMISSION", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "permission_id", referencedColumnName = "id"))
 	private Set<Permission> permissions;
 
@@ -49,9 +48,10 @@ public class User implements Serializable {
 		this.description = description;
 	}
 
-	public User(String name, String description, Set<Permission> permissions) {
+	public User(String name, String description, Department department, Set<Permission> permissions) {
 		this.name = name;
 		this.description = description;
+		this.department = department;
 		this.permissions = permissions;
 	}
 

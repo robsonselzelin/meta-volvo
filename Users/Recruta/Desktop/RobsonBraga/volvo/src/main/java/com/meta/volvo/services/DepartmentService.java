@@ -3,7 +3,6 @@ package com.meta.volvo.services;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,16 +15,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.meta.volvo.entities.Department;
 import com.meta.volvo.repositories.IDepartmentRepository;
-import com.meta.volvo.repositories.IDeptPageRepository;
 
 @RestController
 public class DepartmentService {
 
 	@Autowired
-	IDepartmentRepository deptRepository;
-
-	@Autowired
-	IDeptPageRepository deptPageRepository;
+	private IDepartmentRepository deptRepository;
 
 	@ResponseStatus(HttpStatus.OK)
 	@RequestMapping(value = "/depts/save", method = RequestMethod.POST)
@@ -51,9 +46,10 @@ public class DepartmentService {
 
 	}
 
+	@ResponseStatus(HttpStatus.OK)
 	@RequestMapping(value = "/depts/list/all", method = RequestMethod.GET)
-	public Page<Department> getAllDepartments(Pageable pageable) {
-		return deptPageRepository.findAll(pageable);
+	public ResponseEntity<?> getAllDepartments(Pageable pageable) {
+		return ResponseEntity.ok(deptRepository.findAll());
 	}
 
 }
