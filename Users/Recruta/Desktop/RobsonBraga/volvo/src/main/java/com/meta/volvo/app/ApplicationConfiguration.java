@@ -7,9 +7,9 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.data.web.config.EnableSpringDataWebSupport;
 
 @Configuration
-@ComponentScan(basePackages = {"com.meta.volvo.services"})
+@ComponentScan(basePackages = { "com.meta.volvo.services" })
 @EnableJpaRepositories(basePackages = "com.meta.volvo.repositories")
-@EntityScan(basePackages = {"com.ibm.finance.guda.entities"})
+@EntityScan(basePackages = { "com.meta.volvo.entities" })
 @EnableSpringDataWebSupport
 public class ApplicationConfiguration {
 

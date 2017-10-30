@@ -1,43 +1,60 @@
 package com.meta.volvo.entities;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
-@Entity(name = "USER")
-public class User implements Serializable{
+@Entity(name = "USERS")
+public class User implements Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -2878339487358078070L;
-	
+
 	@Column(length = 8, nullable = false, name = "ID")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
 	private Long id;
-	
+
 	@Column(length = 50, nullable = false, name = "NAME")
 	private String name;
-	
+
 	@Column(length = 50, nullable = false, name = "DESCRIPTION")
 	private String description;
-	
-	@OneToMany
-	@JoinColumn(name = "USER_ID", nullable = false)
-	private List<UserPermission> permissions;
-	
-	@OneToMany
-	@JoinColumn(name = "USER_ID", nullable = false)
-	private List<UserDepartment> departments;
-	
+
+	@ManyToOne
+	@JoinColumn(name = "DEPARTMENT_ID")
+	private Department department;
+
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "USER_PERMISSION", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "permission_id", referencedColumnName = "id"))
+	private Set<Permission> permissions;
+
+	public User() {
+	}
+
+	public User(String name, String description) {
+		this.name = name;
+		this.description = description;
+	}
+
+	public User(String name, String description, Set<Permission> permissions) {
+		this.name = name;
+		this.description = description;
+		this.permissions = permissions;
+	}
+
 	public Long getId() {
 		return id;
 	}
@@ -62,20 +79,20 @@ public class User implements Serializable{
 		this.description = description;
 	}
 
-	public List<UserPermission> getPermissions() {
+	public Department getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(Department department) {
+		this.department = department;
+	}
+
+	public Set<Permission> getPermissions() {
 		return permissions;
 	}
 
-	public void setPermissions(List<UserPermission> permissions) {
+	public void setPermissions(Set<Permission> permissions) {
 		this.permissions = permissions;
-	}
-
-	public List<UserDepartment> getDepartments() {
-		return departments;
-	}
-
-	public void setDepartments(List<UserDepartment> departments) {
-		this.departments = departments;
 	}
 
 }
