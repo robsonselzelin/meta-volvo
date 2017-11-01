@@ -1,5 +1,7 @@
 create database volvo;
 
+create user 'volvo'@'localhost' IDENTIFIED BY 'volvo';
+
 use volvo;
 
 create table DEPARTMENTS (
