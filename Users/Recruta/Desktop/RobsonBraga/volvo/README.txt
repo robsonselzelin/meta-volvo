@@ -16,7 +16,7 @@
 
 * Open Eclipse IDE using the shortcut created in step 2;
 * Create a workspace to the Example, like: c:\Users\Your_User\workspace\Volvo
-* Open the following menu: File -> Import -> Projects from git -> Clone URI -> https://github.ibm.com/robsonselzelin/meta-volvo.git -> Import as general project
+* Open the following menu: File -> Import -> Projects from git -> Clone URI -> https://github.com/robsonselzelin/meta-volvo.git -> Import as general project
 * Go to the 'Package Explorer': right click on 'volvo' -> 'Configure' -> 'Convert to Maven Project'
 * Now import the project using: right click on 'volvo' -> 'Import...' -> 'Existing Maven Projects' 
 * Wait for all the dependencies to be downloaded
