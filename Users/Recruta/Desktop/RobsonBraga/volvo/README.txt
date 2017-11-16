@@ -29,7 +29,7 @@
 * Add the project volvo to it during the server registration process
 
 5 - Download and install MySQL Database Server
-* Downloand MySQL server last version in: https://dev.mysql.com/get/Downloads/MySQLInstaller/mysql-installer-community-5.7.20.0.msi
+* Download MySQL server last version in: https://dev.mysql.com/get/Downloads/MySQLInstaller/mysql-installer-community-5.7.20.0.msi
 * After the download has finished, run and install the package
 * Open MySQL Command Line Client and execute volvo_ddl.sql that comes with volvo Java project
 
